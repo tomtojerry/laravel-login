@@ -16,8 +16,8 @@
 <body>
     <form class="form-signin" method="POST" action="{{ route('login') }}">
         @csrf
-        <h1 class="h3 mb-3 font-weight-normal">ログインフォーム
-        @if ($errors->any())
+        <h1 class="h3 mb-3 font-weight-normal">ログインフォーム</h1>
+        <!-- @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -25,8 +25,15 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
-        </h1>
+        @endif -->
+        @foreach ($errors->all() as $error)
+        <ul class="alert alert-danger">
+            <li>{{ $error }}</li>
+        </ul>
+        @endforeach
+
+        <x-alert type="danger" :session="session('danger')" />
+
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
